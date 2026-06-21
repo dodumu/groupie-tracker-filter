@@ -1,0 +1,11 @@
+{{define "title"}}Home{{end}} {{define "content"}}
+<h1>Welcome To The Groupie Tracker App</h1>
+
+<h2>Select artist you want to view</h2>
+
+{{range .PageArtist}}
+<h3>{{.Artist.Name}}</h3>
+<img src="{{.Artist.Image}}" alt="{{.Artist.Image}}" />
+<a href="/artist/{{.ID}}">Go to Artist</a>
+<hr />
+{{end}}

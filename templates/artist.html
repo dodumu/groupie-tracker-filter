@@ -1,0 +1,30 @@
+{{define "title"}}Artist Page{{end}} {{define "content"}}
+<h1>{{.Artist.Name}}</h1>
+<img src="{{.Artist.Image}}" alt="{{.Artist.Image}}" />
+
+<p>
+  <strong>Creation Date:</strong>{{.Artist.CreationDate}} <br />
+
+  <strong>First Album Date:</strong> {{.Artist.FirstAlbum}}
+</p>
+
+<h2>Members</h2>
+
+<ul>
+  {{range .Artist.Members}}
+  <li>{{.}}</li>
+  {{end}}
+</ul>
+
+<h3>Dates & Location</h3>
+{{range $location, $dates := .Relateions}}
+<h4>{{$location}}</h4>
+<ul>
+  {{range $dates}}
+  <li>{{.}}</li>
+  {{end}}
+</ul>
+{{end}}
+
+<a href="/">Go home</a>
+{{end}}
