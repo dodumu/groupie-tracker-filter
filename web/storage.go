@@ -110,5 +110,12 @@ func SaveAllData() error {
 	}
 	AllRelation = relation
 
+	allartist, err := GetAllArtistPage()
+	if err != nil {
+		return err
+	}
+
+	AllArtistPage = allartist
+
 	return nil
 }

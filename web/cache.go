@@ -7,3 +7,5 @@ var AllLocation []Location
 var AllDates []Date
 
 var AllRelation []Relation
+
+var AllArtistPage []ArtistPage

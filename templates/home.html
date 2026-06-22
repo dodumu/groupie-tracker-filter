@@ -2,10 +2,40 @@
 <h1>Welcome To The Groupie Tracker App</h1>
 
 <h2>Select artist you want to view</h2>
+<form action="/" method="POST">
+  <h3>Filter by First Album Date</h3>
+  <p>e.g. 2000</p>
+  <label for="min-album">Min-Year</label><br />
+  <input type="number" name="min-album" id="min-album" /><br />
+  <label for="max-album">Max-Year</label><br />
+  <input type="number" name="max-album" id="max-album" /><br />
 
-{{range .PageArtist}}
+  <h3>Filter by Creation Date</h3>
+  <p>e.g. 2000</p>
+  <label for="min-creation">Min-Year</label><br />
+  <input type="number" name="min-creation" id="min-creation" /><br />
+  <label for="max-creation">Max-Year</label><br />
+  <input type="number" name="max-creation" id="max-creation" /><br />
+
+  <h3>Filter By Number of Members</h3>
+  <input type="checkbox" name="members" value="1" />
+  <label for="members">1</label>
+  <input type="checkbox" name="members" value="2" />
+  <label for="members">2</label>
+  <input type="checkbox" name="members" value="3" />
+  <label for="members">3</label>
+  <input type="checkbox" name="members" value="4" />
+  <label for="members">4</label>
+  <input type="checkbox" name="members" value="5" />
+  <label for="members">5</label>
+  <input type="checkbox" name="members" value="6" />
+  <label for="members">6</label>
+  <br />
+  <button type="submit">Filter</button>
+</form>
+{{range .}}
 <h3>{{.Artist.Name}}</h3>
-<img src="{{.Artist.Image}}" alt="{{.Artist.Image}}" />
-<a href="/artist/{{.ID}}">Go to Artist</a>
+<img src="{{.Artist.Image}}" alt="{{.Artist.Image}}" /><br />
+<a href="/artist/{{.Artist.ID}}">Go to Artist</a>
 <hr />
-{{end}}
+{{end}} {{end}}
