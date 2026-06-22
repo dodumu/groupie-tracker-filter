@@ -1,6 +1,10 @@
 package web
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
 func GetArtistByID(id int) (Artist, error) {
 	for _, artist := range AllArtist {
@@ -93,17 +97,19 @@ func MatchesMemberFilter(artist ArtistPage, checks []int) bool {
 	return false
 }
 
-func MatchesAlbumFilter(artist ArtistPage, year string) bool {
-	for _, bands := range AllArtistPage {
-		var albumYear string
-		album := bands.Artist.FirstAlbum
-		for i := len(album) - 5; i < len(album); i++ {
+func MatchesAlbumFilter(artist ArtistPage, minYear int, maxyear int) bool {
 
-			albumYear += string(album[i])
-		}
-		if albumYear == year {
-			return true
-		}
+	album := artist.Artist.FirstAlbum
+	albumDate := strings.Split(album, "-")
+	albumyear, err := strconv.Atoi(albumDate[2])
+	if err != nil {
+		fmt.Println("invalid number")
+		return false
 	}
+
+	if albumyear >= minYear && albumyear <= maxyear {
+		return true
+	}
+
 	return false
 }

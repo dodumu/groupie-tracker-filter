@@ -38,21 +38,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		minAlbum := r.FormValue("min-album")
 		maxAlbum := r.FormValue("max-album")
 
-		var num1 int
-		var num2 int
-		if minAlbum != "" && maxAlbum != "" {
-			num1, err := strconv.Atoi(minAlbum)
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusBadRequest)
-				return
-			}
-			num2, err := strconv.Atoi(maxAlbum)
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusBadRequest)
-				return
-			}
-		}
-
 		filter := r.Form["members"]
 		var num []int
 		for _, number := range filter {
@@ -66,6 +51,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		for _, band := range AllArtistPage {
 			passesCreation := true
 			passesMembers := true
+			passAlbum := true
 
 			if minCreation != "" && maxCreation != "" {
 				maxNum, err := strconv.Atoi(maxCreation)
@@ -84,9 +70,23 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 				passesMembers = MatchesMemberFilter(band, num)
 			}
-			if passesCreation && passesMembers {
+			if minAlbum != "" && maxAlbum != "" {
+				num1, err := strconv.Atoi(minAlbum)
+				if err != nil {
+					http.Error(w, err.Error(), http.StatusBadRequest)
+					return
+				}
+				num2, err := strconv.Atoi(maxAlbum)
+				if err != nil {
+					http.Error(w, err.Error(), http.StatusBadRequest)
+					return
+				}
+				passAlbum = MatchesAlbumFilter(band, num1, num2)
+			}
+			if passesCreation && passesMembers && passAlbum {
 				data = append(data, band)
 			}
+
 		}
 
 		BaseHandler(w, "home.html", data)
