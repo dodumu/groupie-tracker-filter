@@ -15,8 +15,19 @@ body{
     padding: 20px;
 }
 
-.main a {
+.card a {
+    display: inline-block;
+    background-color: #1a1a2e;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
     text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.card a:hover {
+    background-color: #3a3a5e;
 }
 
 .sidebar input {
@@ -29,10 +40,20 @@ body{
     padding: 20px;
 }
 
-.sidebar button:hover{
-    background-color: #f5f5f5;
+.sidebar button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-top: 10px;
     cursor: pointer;
-    scale: 1.02px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar button:hover {
+    background-color: white;
+    color: #1a1a2e;
 }
 .card-container {
     display: flex;
@@ -47,4 +68,80 @@ body{
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     padding: 15px;
     text-align: center;
+}
+
+.artist-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.artist-left {
+    width: 300px;
+    text-align: center;
+}
+
+.artist-image {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.artist-left h1 {
+    color: #1a1a2e;
+    margin-top: 15px;
+}
+
+.artist-left p {
+    color: #555;
+}
+
+.back-btn {
+    display: inline-block;
+    background-color: #1a1a2e;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: #3a3a5e;
+}
+
+.members-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.member-badge {
+    background-color: #1a1a2e;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.location-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.location-card h4 {
+    color: #1a1a2e;
+    margin-bottom: 8px;
+}
+
+.location-card ul {
+    list-style: none;
+    padding: 0;
+    color: #555;
 }

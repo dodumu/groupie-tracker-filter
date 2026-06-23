@@ -1,30 +1,34 @@
 {{define "title"}}Artist Page{{end}} {{define "content"}}
-<h1>{{.Artist.Name}}</h1>
-<img src="{{.Artist.Image}}" alt="{{.Artist.Image}}" />
-
-<p>
-  <strong>Creation Date:</strong>{{.Artist.CreationDate}} <br />
-
-  <strong>First Album Date:</strong> {{.Artist.FirstAlbum}}
-</p>
-
-<h2>Members</h2>
-
-<ul>
-  {{range .Artist.Members}}
-  <li>{{.}}</li>
-  {{end}}
-</ul>
-
-<h3>Dates & Location</h3>
-{{range $location, $dates := .Relation}}
-<h4>{{$location}}</h4>
-<ul>
-  {{range $dates}}
-  <li>{{.}}</li>
-  {{end}}
-</ul>
-{{end}}
-
-<a href="/">Go home</a>
+<div class="artist-container">
+  <div class="artist-left">
+    <img class="artist-image" src="{{.Artist.Image}}" alt="{{.Artist.Name}}" />
+    <h1>{{.Artist.Name}}</h1>
+    <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
+    <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+    <a href="/" class="back-btn">Go Home</a>
+  </div>
+  <div class="artist-right">
+    <div class="members-section">
+      <h2>Members</h2>
+      <div class="members-list">
+        {{range .Artist.Members}}
+        <span class="member-badge">{{.}}</span>
+        {{end}}
+      </div>
+    </div>
+    <div class="dates-section">
+      <h2>Dates & Locations</h2>
+      {{range $location, $dates := .Relation}}
+      <div class="location-card">
+        <h4>{{$location}}</h4>
+        <ul>
+          {{range $dates}}
+          <li>{{.}}</li>
+          {{end}}
+        </ul>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</div>
 {{end}}
